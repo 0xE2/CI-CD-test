@@ -5,7 +5,7 @@ import telebot
 
 bot = telebot.TeleBot(config.token)
 dev_chat = config.test_chat_id
-bot_version = "0.02"
+bot_version = "0.01"
 
 @bot.message_handler(commands=["start"])
 def start(message):
