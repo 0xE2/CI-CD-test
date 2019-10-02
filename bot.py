@@ -5,11 +5,17 @@ import telebot
 
 bot = telebot.TeleBot(config.token)
 dev_chat = config.test_chat_id
-bot_version = "0.01"
+bot_version = "0.02"
 
 @bot.message_handler(commands=["start"])
 def start(message):
 	bot.send_message(message.chat.id, "Bot started")
+
+
+@bot.message_handler(content_types=["text"])
+def echo_all_messages(message):
+    bot.send_message(message.chat.id, message.text)
+
 
 if __name__ == '__main__':
 	bot.send_message(dev_chat, "Bot version: " + bot_version)
