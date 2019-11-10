@@ -30,7 +30,8 @@ def subscribe(message):
 
 @bot.message_handler(commands=["unsub","unsubscribe"])
 def unsubscribe(message):
-    if(not "SELECT COUNT(*) FROM users WHERE telegram_id =:tg_id", {"tg_id" : message.chat.id}):
+    db.execute("SELECT COUNT(*) FROM users WHERE telegram_id =:tg_id", {"tg_id" : message.chat.id})
+    if(not db.fetchall()[0][0]):
         bot.send_message(message.chat.id, 'You are not subscribed')
     else:
         db.execute("DELETE FROM users WHERE telegram_id =:tg_id", {"tg_id" : message.chat.id})
