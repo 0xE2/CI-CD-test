@@ -8,8 +8,6 @@ import hashlib
 
 
 bot = telebot.TeleBot(config.token, threaded=False) #When threaded, sqlite doesn't work
-test_chat_id = config.test_chat_id
-bot_version = "0.01"
 conn = sqlite3.connect('testers.db')
 db = conn.cursor()
 
@@ -75,6 +73,5 @@ def send_apk():
 
 
 if __name__ == '__main__':
-    #bot.send_message(test_chat_id, "Bot version: " + bot_version)
     check_new_apk()
     bot.polling(none_stop=True)
